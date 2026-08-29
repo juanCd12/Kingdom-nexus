@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear cuenta | Kingdom Nexus</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+
+    <main class="register-page">
+
+        <section class="register-brand">
+
+            <a href="index.html" class="brand-logo">
+                <img
+                    src="images/nexus.png"
+                    alt="Kingdom Nexus"
+                >
+            </a>
+
+            <div class="brand-content">
+
+                <span class="brand-label">
+                    GESTIÓN INTELIGENTE
+                </span>
+
+                <h1>
+                    Gestiona tu negocio
+                    <span>desde un solo lugar.</span>
+                </h1>
+
+                <p>
+                    Controla tu inventario, ventas y operaciones
+                    de forma sencilla, rápida y organizada.
+                </p>
+
+                <ul class="benefits-list">
+
+                    <li>
+                        <span class="benefit-icon">
+                            <i data-lucide="package-check"></i>
+                        </span>
+
+                        <div>
+                            <strong>Control de inventario</strong>
+                            <small>
+                                Conoce exactamente qué tienes y dónde está.
+                            </small>
+                        </div>
+                    </li>
+
+                    <li>
+                        <span class="benefit-icon">
+                            <i data-lucide="chart-no-axes-combined"></i>
+                        </span>
+
+                        <div>
+                            <strong>Información en tiempo real</strong>
+                            <small>
+                                Toma decisiones basadas en los datos de tu negocio.
+                            </small>
+                        </div>
+                    </li>
+
+                    <li>
+                        <span class="benefit-icon">
+                            <i data-lucide="bell-ring"></i>
+                        </span>
+
+                        <div>
+                            <strong>Alertas inteligentes</strong>
+                            <small>
+                                Detecta problemas antes de que se conviertan en pérdidas.
+                            </small>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <p class="brand-footer">
+                © 2026 Kingdom Nexus
+            </p>
+
+        </section>
+
+
+        <section class="register-form-section">
+
+            <div class="form-container">
+
+                <div class="mobile-logo">
+                    <a href="index.html">
+                        <img
+                            src="images/nexus.png"
+                            alt="Kingdom Nexus"
+                        >
+                    </a>
+                </div>
+
+                <div class="form-header">
+
+                    <span class="form-badge">
+                        Comienza ahora
+                    </span>
+
+                    <h2>
+                        Crear tu cuenta
+                    </h2>
+
+                    <p>
+                        Regístrate para comenzar a gestionar tu negocio.
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm" novalidate method="get">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="firstName">Nombre</label>
+
+                            <div class="input-wrapper">
+                                <i data-lucide="user"></i>
+                                <input type="text" id="firstName" name="firstName" placeholder="Tu nombre" autocomplete="given-name" required>
+                            </div>
+                            <small class="error-message"></small>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="lastName">Apellido</label>
+                            <div class="input-wrapper">
+                                <i data-lucide="user"></i>
+                                <input type="text" id="lastName" name="lastName" placeholder="Tu apellido" autocomplete="family-name" required>
+                            </div>
+                            <small class="error-message"></small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">Correo electrónico</label>
+
+                        <div class="input-wrapper">
+                            <i data-lucide="mail"></i>
+
+                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" autocomplete="email" required>
+                        </div>
+                        <small class="error-message"></small>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">Contraseña</label>
+
+                        <div class="input-wrapper">
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input type="password" id="password" name="password" placeholder="Crea una contraseña" autocomplete="new-password" required>
+
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                data-target="password"
+                                aria-label="Mostrar contraseña"
+                            >
+                                <i data-lucide="eye"></i>
+                            </button>
+
+                        </div>
+
+                        <small class="password-hint">
+                            Mínimo 8 caracteres.
+                        </small>
+
+                        <small class="error-message"></small>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirmar contraseña
+                        </label>
+
+                        <div class="input-wrapper">
+                            <i data-lucide="lock-keyhole"></i>
+
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repite tu contraseña" autocomplete="new-password" required>
+
+                            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Mostrar contraseña">
+                                <i data-lucide="eye"></i>
+                            </button>
+                        </div>
+                        <small class="error-message"></small>
+
+                    </div>
+
+
+                    <label class="terms-checkbox">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            name="terms"
+                        >
+
+                        <span class="checkbox-custom"></span>
+
+                        <span class="terms-text">
+                            Acepto los
+                            <a href="#">
+                                términos y condiciones
+                            </a>
+                            y la
+                            <a href="#">
+                                política de privacidad
+                            </a>.
+                        </span>
+
+                    </label>
+
+                    <small
+                        class="error-message terms-error"
+                    ></small>
+
+
+                    <button type="submit" class="register-button">
+                        Registrarse
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+
+
+                    <p class="login-link">
+                        ¿Ya tienes una cuenta?
+
+                        <a href="login.html">
+                            Iniciar sesión
+                        </a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

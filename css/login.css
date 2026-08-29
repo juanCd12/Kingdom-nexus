@@ -1,0 +1,790 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --slate-950: #020617;
+    --slate-900: #0f172a;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+
+    --white: #ffffff;
+
+    --danger: #dc2626;
+    --danger-light: #fef2f2;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "Inter", sans-serif;
+
+    color: var(--slate-900);
+
+    background: var(--slate-50);
+
+    -webkit-font-smoothing: antialiased;
+
+}
+
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.login-page {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+.background-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+
+        linear-gradient(
+            rgba(148, 163, 184, 0.08) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(148, 163, 184, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 40px 40px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 80%
+    );
+
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.background-glow {
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: -250px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: rgba(37, 99, 235, 0.12);
+
+    filter: blur(80px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.login-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.login-logo {
+
+    display: inline-flex;
+
+    margin-bottom: 28px;
+
+}
+
+
+.login-logo img {
+
+    width: 145px;
+
+    height: auto;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.login-card {
+
+    width: 100%;
+
+    padding: 36px;
+
+    background: var(--white);
+
+    border: 1px solid var(--slate-200);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 25px -5px rgba(15, 23, 42, 0.06),
+        0 8px 10px -6px rgba(15, 23, 42, 0.04);
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.login-header {
+
+    margin-bottom: 30px;
+
+}
+
+
+.login-badge {
+
+    display: inline-flex;
+
+    margin-bottom: 12px;
+
+    padding: 5px 9px;
+
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-radius: 6px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+.login-header h1 {
+
+    margin-bottom: 7px;
+
+    color: var(--slate-900);
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.03em;
+
+}
+
+
+.login-header p {
+
+    color: var(--slate-500);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.form-group label {
+
+    color: var(--slate-700);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   PASSWORD LABEL
+===================================================== */
+
+.password-label {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.password-label a {
+
+    color: var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+}
+
+
+.password-label a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.input-wrapper > svg {
+
+    position: absolute;
+
+    left: 14px;
+
+    width: 17px;
+    height: 17px;
+
+    color: var(--slate-400);
+
+    pointer-events: none;
+
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 42px;
+
+    color: var(--slate-900);
+
+    background: var(--white);
+
+    border: 1px solid var(--slate-300);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: var(--slate-400);
+
+}
+
+
+.input-wrapper input:hover {
+
+    border-color: var(--slate-400);
+
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+
+}
+
+
+/* =====================================================
+   PASSWORD TOGGLE
+===================================================== */
+
+.toggle-password {
+
+    position: absolute;
+
+    right: 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+
+    color: var(--slate-400);
+
+    background: transparent;
+
+}
+
+
+.toggle-password:hover {
+
+    color: var(--slate-700);
+
+}
+
+
+.toggle-password svg {
+
+    width: 17px;
+    height: 17px;
+
+}
+
+
+/* =====================================================
+   ERRORS
+===================================================== */
+
+.error-message {
+
+    min-height: 0;
+
+    color: var(--danger);
+
+    font-size: 11px;
+
+}
+
+
+.input-wrapper.error input {
+
+    border-color: var(--danger);
+
+    background: var(--danger-light);
+
+}
+
+
+/* =====================================================
+   REMEMBER ME
+===================================================== */
+
+.remember-me {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: var(--slate-500);
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+}
+
+
+.remember-me input {
+
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+
+.checkbox-custom {
+
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+
+    background: white;
+
+    border: 1px solid var(--slate-300);
+
+    border-radius: 4px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.remember-me input:checked + .checkbox-custom {
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login-button {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    height: 48px;
+
+    color: white;
+
+    background: var(--primary);
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 4px 12px rgba(37, 99, 235, 0.18);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.login-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 16px rgba(37, 99, 235, 0.22);
+
+}
+
+
+.login-button svg {
+
+    width: 18px;
+    height: 18px;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.login-button:hover svg {
+
+    transform: translateX(3px);
+
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 26px 0;
+
+}
+
+
+.divider span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--slate-200);
+
+}
+
+
+.divider p {
+
+    color: var(--slate-400);
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   REGISTER LINK
+===================================================== */
+
+.register-link {
+
+    color: var(--slate-500);
+
+    text-align: center;
+
+    font-size: 13px;
+
+}
+
+
+.register-link a {
+
+    color: var(--primary);
+
+    font-weight: 600;
+
+}
+
+
+.register-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   BACK LINK
+===================================================== */
+
+.back-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 24px;
+
+    color: var(--slate-500);
+
+    font-size: 12px;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.back-link:hover {
+
+    color: var(--slate-900);
+
+}
+
+
+.back-link svg {
+
+    width: 15px;
+    height: 15px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.login-footer {
+
+    margin-top: 16px;
+
+    color: var(--slate-400);
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .login-page {
+
+        padding: 24px 16px;
+
+    }
+
+
+    .login-logo {
+
+        margin-bottom: 22px;
+
+    }
+
+
+    .login-logo img {
+
+        width: 125px;
+
+    }
+
+
+    .login-card {
+
+        padding: 28px 22px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .login-header h1 {
+
+        font-size: 27px;
+
+    }
+
+}

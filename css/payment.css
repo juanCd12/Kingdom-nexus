@@ -1,0 +1,900 @@
+/* =====================================================
+   PAYMENT PAGE
+===================================================== */
+
+.payment-page {
+
+    min-height: 100vh;
+
+    padding: 36px 24px 56px;
+
+    background: var(--slate-50);
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.payment-header {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 32px;
+
+}
+
+
+.payment-logo img {
+
+    width: 135px;
+
+    height: auto;
+
+}
+
+
+/* =====================================================
+   STEPS
+===================================================== */
+
+.checkout-steps {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.step {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--slate-400);
+
+    font-size: 12px;
+
+    font-weight: var(--font-medium);
+
+}
+
+
+.step span {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 26px;
+
+    height: 26px;
+
+    color: var(--slate-500);
+
+    background: var(--slate-200);
+
+    border-radius: 50%;
+
+    font-size: 11px;
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.step.active {
+
+    color: var(--primary);
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.step.active span {
+
+    color: var(--white);
+
+    background: var(--primary);
+
+}
+
+
+.step.completed {
+
+    color: var(--green);
+
+}
+
+
+.step.completed span {
+
+    color: var(--white);
+
+    background: var(--green);
+
+}
+
+
+.step-line {
+
+    width: 35px;
+
+    height: 1px;
+
+    background: var(--slate-200);
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.payment-content {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(320px, 0.65fr);
+
+    gap: 28px;
+
+    align-items: start;
+
+}
+
+
+/* =====================================================
+   PAYMENT CARD
+===================================================== */
+
+.payment-card {
+
+    padding: 36px;
+
+    background: var(--white);
+
+    border: 1px solid var(--slate-200);
+
+    border-radius: var(--radius-2xl);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+/* =====================================================
+   HEADER CARD
+===================================================== */
+
+.payment-card-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.payment-icon {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 44px;
+
+    height: 44px;
+
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-radius: var(--radius-lg);
+
+}
+
+
+.payment-icon svg {
+
+    width: 21px;
+
+    height: 21px;
+
+}
+
+
+.payment-card-header h1 {
+
+    margin-bottom: 5px;
+
+    color: var(--slate-900);
+
+    font-size: 24px;
+
+    line-height: 1.25;
+
+    font-weight: var(--font-bold);
+
+}
+
+
+.payment-card-header p {
+
+    color: var(--slate-500);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   TRIAL NOTICE
+===================================================== */
+
+.trial-notice {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+
+    padding: 14px;
+
+    background: var(--green-light);
+
+    border: 1px solid #a7f3d0;
+
+    border-radius: var(--radius-lg);
+
+}
+
+
+.trial-notice-icon {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 34px;
+
+    color: var(--green);
+
+    background: var(--white);
+
+    border-radius: var(--radius-md);
+
+}
+
+
+.trial-notice-icon svg {
+
+    width: 17px;
+
+    height: 17px;
+
+}
+
+
+.trial-notice strong {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #047857;
+
+    font-size: 13px;
+
+}
+
+
+.trial-notice p {
+
+    color: #065f46;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+#paymentForm {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.card-input-wrapper,
+.cvv-wrapper {
+
+    position: relative;
+
+}
+
+
+.card-input-wrapper .form-input {
+
+    padding-right: 48px;
+
+}
+
+
+.card-input-wrapper > svg {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 14px;
+
+    width: 19px;
+
+    height: 19px;
+
+    color: var(--slate-400);
+
+    transform: translateY(-50%);
+
+}
+
+
+.cvv-wrapper .form-input {
+
+    padding-right: 42px;
+
+}
+
+
+.cvv-wrapper > svg {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 14px;
+
+    width: 17px;
+
+    height: 17px;
+
+    color: var(--slate-400);
+
+    transform: translateY(-50%);
+
+}
+
+
+.payment-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+
+}
+
+
+/* =====================================================
+   TERMS
+===================================================== */
+
+.payment-terms {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    color: var(--slate-500);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+.payment-terms input {
+
+    flex-shrink: 0;
+
+    width: 16px;
+
+    height: 16px;
+
+    margin-top: 1px;
+
+    accent-color: var(--primary);
+
+}
+
+
+/* =====================================================
+   SUBMIT
+===================================================== */
+
+.payment-submit {
+
+    width: 100%;
+
+    height: 46px;
+
+}
+
+
+.payment-submit svg {
+
+    width: 18px;
+
+    height: 18px;
+
+}
+
+
+.payment-secure {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    color: var(--slate-400);
+
+    font-size: 11px;
+
+}
+
+
+.payment-secure svg {
+
+    width: 13px;
+
+    height: 13px;
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.payment-summary {
+
+    padding: 28px;
+
+    background: var(--white);
+
+    border: 1px solid var(--slate-200);
+
+    border-radius: var(--radius-2xl);
+
+    box-shadow: var(--shadow-sm);
+
+}
+
+
+.summary-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+    color: var(--slate-900);
+
+    font-size: 15px;
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.summary-badge {
+
+    padding: 5px 9px;
+
+    color: var(--green);
+
+    background: var(--green-light);
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.summary-plan {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+}
+
+
+.summary-plan strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--slate-900);
+
+    font-size: 16px;
+
+}
+
+
+.summary-plan span {
+
+    color: var(--slate-500);
+
+    font-size: 12px;
+
+}
+
+
+.summary-price {
+
+    text-align: right;
+
+    white-space: nowrap;
+
+}
+
+
+.summary-price strong {
+
+    display: inline;
+
+    font-size: 18px;
+
+}
+
+
+.summary-price span {
+
+    margin-left: 2px;
+
+    font-size: 11px;
+
+}
+
+
+.summary-divider {
+
+    height: 1px;
+
+    margin: 22px 0;
+
+    background: var(--slate-200);
+
+}
+
+
+.summary-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 13px;
+
+    color: var(--slate-500);
+
+    font-size: 12px;
+
+}
+
+
+.summary-row:last-of-type {
+
+    margin-bottom: 0;
+
+}
+
+
+.summary-row strong {
+
+    color: var(--slate-700);
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.summary-total {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: var(--slate-900);
+
+    font-size: 14px;
+
+    font-weight: var(--font-semibold);
+
+}
+
+
+.summary-total strong {
+
+    font-size: 18px;
+
+}
+
+
+.summary-cancel {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+    padding: 12px;
+
+    color: var(--slate-500);
+
+    background: var(--slate-50);
+
+    border-radius: var(--radius-md);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+.summary-cancel svg {
+
+    flex-shrink: 0;
+
+    width: 15px;
+
+    height: 15px;
+
+    margin-top: 1px;
+
+    color: var(--green);
+
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+.payment-back {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    width: fit-content;
+
+    margin: 24px auto 0;
+
+    color: var(--slate-500);
+
+    font-size: 13px;
+
+}
+
+
+.payment-back:hover {
+
+    color: var(--slate-900);
+
+}
+
+
+.payment-back svg {
+
+    width: 15px;
+
+    height: 15px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .payment-content {
+
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+
+    }
+
+
+    .payment-summary {
+
+        order: -1;
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .payment-header {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        margin-bottom: 30px;
+
+    }
+
+
+    .checkout-steps {
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+
+    .step-line {
+
+        width: 20px;
+
+    }
+
+
+    .payment-card {
+
+        padding: 24px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .payment-page {
+
+        padding: 28px 16px 44px;
+
+    }
+
+
+    .payment-logo img {
+
+        width: 120px;
+
+    }
+
+
+    .step {
+
+        font-size: 0;
+
+    }
+
+
+    .step span {
+
+        font-size: 11px;
+
+    }
+
+
+    .payment-card-header h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .payment-row {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .payment-summary {
+
+        padding: 22px;
+
+    }
+
+}

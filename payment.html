@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Método de pago - Kingdom Nexus</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Lucide -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+    <!-- Design System -->
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Payment -->
+
+    <link rel="stylesheet" href="css/payment.css">
+
+</head>
+
+
+<body>
+
+    <main class="payment-page">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="payment-header">
+
+            <a
+                href="index.html"
+                class="payment-logo"
+            >
+
+                <img
+                    src="images/nexus.png"
+                    alt="Kingdom Nexus"
+                >
+
+            </a>
+
+
+            <div class="checkout-steps">
+
+                <span class="step completed">
+                    <span>1</span>
+                    Cuenta
+                </span>
+
+                <span class="step-line"></span>
+
+                <span class="step active">
+                    <span>2</span>
+                    Pago
+                </span>
+
+                <span class="step-line"></span>
+
+                <span class="step">
+                    <span>3</span>
+                    Comenzar
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="payment-content">
+
+
+            <!-- =================================================
+                 PAYMENT FORM
+            ================================================== -->
+
+            <div class="payment-card">
+
+                <div class="payment-card-header">
+
+                    <div class="payment-icon">
+
+                        <i data-lucide="credit-card"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h1>
+                            Agrega tu método de pago
+                        </h1>
+
+                        <p>
+                            No realizaremos ningún cobro durante tu prueba gratuita.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="trial-notice">
+
+                    <div class="trial-notice-icon">
+
+                        <i data-lucide="gift"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            14 días gratis
+                        </strong>
+
+                        <p>
+                            Tu suscripción comenzará a cobrarse
+                            únicamente cuando termine tu prueba,
+                            salvo que canceles antes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="paymentForm">
+
+
+                    <!-- =============================================
+                         CARDHOLDER
+                    ============================================== -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="cardName"
+                            class="form-label"
+                        >
+                            Nombre del titular
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cardName"
+                            name="cardName"
+                            class="form-input"
+                            placeholder="Nombre como aparece en la tarjeta"
+                            autocomplete="cc-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- =============================================
+                         CARD NUMBER
+                    ============================================== -->
+
+                    <div class="form-group">
+
+                        <label
+                            for="cardNumber"
+                            class="form-label"
+                        >
+                            Número de tarjeta
+                        </label>
+
+                        <div class="card-input-wrapper">
+
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                name="cardNumber"
+                                class="form-input"
+                                placeholder="0000 0000 0000 0000"
+                                inputmode="numeric"
+                                autocomplete="cc-number"
+                                maxlength="19"
+                                required
+                            >
+
+                            <i data-lucide="credit-card"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         EXPIRATION / CVV
+                    ============================================== -->
+
+                    <div class="payment-row">
+
+                        <div class="form-group">
+
+                            <label
+                                for="expiry"
+                                class="form-label"
+                            >
+                                Vencimiento
+                            </label>
+
+                            <input
+                                type="text"
+                                id="expiry"
+                                name="expiry"
+                                class="form-input"
+                                placeholder="MM/AA"
+                                inputmode="numeric"
+                                autocomplete="cc-exp"
+                                maxlength="5"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label
+                                for="cvv"
+                                class="form-label"
+                            >
+                                CVV
+                            </label>
+
+                            <div class="cvv-wrapper">
+
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    name="cvv"
+                                    class="form-input"
+                                    placeholder="•••"
+                                    inputmode="numeric"
+                                    autocomplete="cc-csc"
+                                    maxlength="4"
+                                    required
+                                >
+
+                                <i
+                                    data-lucide="help-circle"
+                                    title="Código de seguridad de tu tarjeta"
+                                ></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         TERMS
+                    ============================================== -->
+
+                    <label class="payment-terms">
+
+                        <input
+                            type="checkbox"
+                            id="paymentTerms"
+                            required
+                        >
+
+                        <span>
+                            Acepto los términos de la suscripción y entiendo
+                            que se realizará un cobro de acuerdo con el plan
+                            seleccionado al finalizar mi prueba gratuita,
+                            salvo que cancele antes.
+                        </span>
+
+                    </label>
+
+
+                    <!-- =============================================
+                         SUBMIT
+                    ============================================== -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary payment-submit"
+                    >
+
+                        Comenzar prueba gratuita
+
+                        <i data-lucide="arrow-right"></i>
+
+                    </button>
+
+
+                    <p class="payment-secure">
+
+                        <i data-lucide="lock"></i>
+
+                        Tus datos de pago están protegidos
+
+                    </p>
+
+                </form>
+
+            </div>
+
+
+            <!-- =================================================
+                 ORDER SUMMARY
+            ================================================== -->
+
+            <aside class="payment-summary">
+
+                <div class="summary-header">
+
+                    <span>
+                        Tu suscripción
+                    </span>
+
+                    <span class="summary-badge">
+                        14 días gratis
+                    </span>
+
+                </div>
+
+
+                <div class="summary-plan">
+
+                    <div>
+
+                        <strong id="selectedPlanName">
+                            Plan Profesional
+                        </strong>
+
+                        <span>
+                            Suscripción mensual
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-price">
+
+                        <strong id="selectedPlanPrice">
+                            $99.900
+                        </strong>
+
+                        <span>
+                            /mes
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Hoy
+                    </span>
+
+                    <strong>
+                        $0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Prueba gratuita
+                    </span>
+
+                    <strong>
+                        14 días
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Después de la prueba
+                    </span>
+
+                    <strong id="nextPaymentPrice">
+                        $99.900/mes
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total hoy
+                    </span>
+
+                    <strong>
+                        $0 COP
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-cancel">
+
+                    <i data-lucide="circle-check"></i>
+
+                    <span>
+                        Puedes cancelar antes de finalizar
+                        tu prueba y no se realizará ningún cobro.
+                    </span>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <a href="#" class="payment-back" id="backToRegister">
+            <i data-lucide="arrow-left"></i>
+            Volver al registro
+        </a>
+
+    </main>
+
+
+    <script>
+
+        lucide.createIcons();
+
+    </script>
+
+    <script src="js/payment.js"></script>
+
+</body>
+
+</html>
