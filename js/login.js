@@ -37,6 +37,6 @@ if (form) {
             planName: planNames[selectedPlanValue] || "Plan"
         }));
 
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     });
 }
