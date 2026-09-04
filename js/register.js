@@ -7,10 +7,13 @@ const form = document.getElementById("registerForm");
 const pass = document.getElementById("password");
 const confirmPass = document.getElementById("confirmPassword");
 
-const alertContainer = document.getElementById("alertContainer");
-const alertMessage = document.getElementById("alertMessage");
-
 const generatePass = document.getElementById("generatePassword");
+
+const alertContainer =
+    document.getElementById("alertContainer");
+
+const alertMessage =
+    document.getElementById("alertMessage");
 
 const toggles = document.querySelectorAll(".toggle-password");
 
@@ -23,10 +26,29 @@ const passwordStrengthBar =
 
 /* =====================================================
    PASSWORD REQUIREMENTS
+===================================================== */
+
+const requirementLength =
+    document.getElementById("requirement-length");
+
+const requirementUppercase =
+    document.getElementById("requirement-uppercase");
+
+const requirementLowercase =
+    document.getElementById("requirement-lowercase");
+
+const requirementNumber =
+    document.getElementById("requirement-number");
+
+const requirementSpecial =
+    document.getElementById("requirement-special");
+
+
+/* =====================================================
+   PLAN
+===================================================== */
+
 const params = new URLSearchParams(window.location.search);
-const plan = params.get("plan");
-const validPlans = ["basic", "professional", "enterprise"];
-const selectedPlanValue = validPlans.includes(plan) ? plan : "basic";
 
 const plan = params.get("plan");
 
@@ -49,13 +71,244 @@ if (!planesValidos.includes(plan)) {
 
 /* =====================================================
    REGISTER
+===================================================== */
+
+form.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+
+    /* Validación HTML */
+
+    if (!form.checkValidity()) {
+
+        form.reportValidity();
+
+        return;
+    }
+
+
+    /* Validación de contraseñas */
+
+    if (pass.value !== confirmPass.value) {
+
+        showAlert("Las contraseñas no coinciden.");
+
+        return;
+    }
+
+
+    /* Obtener datos */
+
+    const datos = Object.fromEntries(
+        new FormData(form)
+    );
+
+
+    /* Crear registro */
+
+    const registro = {
+        ...datos,
+        plan
+    };
+
+
+    /* Guardar temporalmente */
+
+    sessionStorage.setItem(
+        "registro",
+        JSON.stringify(registro)
+    );
+
+
+    /* Continuar */
+
+    window.location.href = "login.html";
+
+});
+
+function showAlert(message) {
+
+    alertMessage.textContent = message;
+
+    alertContainer.classList.add("active");
+
+    setTimeout(() => {
+
+        alertContainer.classList.remove("active");
+
+    }, 3000);
+}
+
+
+/* =====================================================
+   PASSWORD INPUT
+===================================================== */
+
+pass.addEventListener("input", function () {
+
+    updatePasswordStrength(pass.value);
+
+});
+
+
+/* =====================================================
+   PASSWORD GENERATOR
+===================================================== */
+
+generatePass.addEventListener("click", function () {
+
+    createPassword();
+
+    updatePasswordStrength(pass.value);
+
+});
+
+
+function createPassword() {
+
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+
+    const numbers = "0123456789";
+
+    const special = "!@#$%&*()_+?:{}[]";
+
+
+    /*
+        Garantizamos al menos un carácter
+        de cada categoría.
+    */
+
+    let password = "";
+
+    password += getRandomCharacter(uppercase);
+
+    password += getRandomCharacter(lowercase);
+
+    password += getRandomCharacter(numbers);
+
+    password += getRandomCharacter(special);
+
+
+    /*
+        Completamos hasta 12 caracteres.
+    */
+
+    const allCharacters =
+        uppercase +
+        lowercase +
+        numbers +
+        special;
+
+
+    while (password.length < 12) {
+
+        password += getRandomCharacter(allCharacters);
+
+    }
+
+
+    /*
+        Mezclamos los caracteres.
+    */
+
+    password = shufflePassword(password);
+
+
+    /*
+        Asignamos a ambos campos.
+    */
+
+    pass.value = password;
+
+    confirmPass.value = password;
+
+}
+
+
+function getRandomCharacter(characters) {
+
+    const array = new Uint32Array(1);
+
+    crypto.getRandomValues(array);
+
+    return characters[
+        array[0] % characters.length
+    ];
+
+}
+
+
+function shufflePassword(password) {
+
+    const characters = password.split("");
+
+    const array = new Uint32Array(
+        characters.length
+    );
+
+    crypto.getRandomValues(array);
+
+
+    for (let i = characters.length - 1; i > 0; i--) {
+
+        const randomIndex =
+            array[i] % (i + 1);
+
+
+        [
+            characters[i],
+            characters[randomIndex]
+        ] = [
+            characters[randomIndex],
+            characters[i]
+        ];
+
+    }
+
+
+    return characters.join("");
+
+}
+
+
+/* =====================================================
+   SHOW / HIDE PASSWORD
+===================================================== */
+
+toggles.forEach(function (toggle) {
+
+    toggle.addEventListener("click", function () {
+
+        const targetId =
+            toggle.dataset.target;
+
+        const target =
+            document.getElementById(targetId);
+
+
+        if (target.type === "password") {
+
+            target.type = "text";
+
+            toggle.innerHTML =
+                '<i data-lucide="eye-off"></i>';
+
+        } else {
+
+            target.type = "password";
+
+            toggle.innerHTML =
+                '<i data-lucide="eye"></i>';
+
         }
 
 
         lucide.createIcons();
 
     });
-}
 
 });
 
@@ -292,6 +545,12 @@ function resetRequirements() {
     );
 
 }
+
+
+
+
+
+
 
 
 
