@@ -113,7 +113,9 @@ form.addEventListener("submit", function (event) {
     };
 
 
-    /* Guardar temporalmente */
+    /* Guardar temporalmente
+        Pendiente por guardar en supabase
+     */
 
     sessionStorage.setItem(
         "registro",
@@ -219,6 +221,7 @@ function createPassword() {
 
     /*
         Asignamos a ambos campos.
+        Pendiente por guardar en supabase
     */
 
     pass.value = password;
