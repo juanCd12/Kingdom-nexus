@@ -636,11 +636,11 @@ button:focus-visible {
 .producto-grid {
     display: grid;
 
-    grid-template-columns: 0.85fr 1.15fr;
+    grid-template-columns: 0.75fr 1.25fr;
 
     align-items: center;
 
-    gap: 70px;
+    gap: 56px;
 }
 
 .producto-content h2 {
@@ -715,6 +715,8 @@ button:focus-visible {
 
 .dashboard-preview {
     position: relative;
+    width: 100%;
+    justify-self: center;
 }
 
 .dashboard-preview::before {
@@ -745,6 +747,19 @@ button:focus-visible {
     border-radius: 18px;
 
     box-shadow: var(--shadow-lg);
+}
+
+.dashboard-window iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1200px;
+    height: 760px;
+    border: 0;
+    background: #f4f7fb;
+    transform-origin: top left;
+    pointer-events: none;
 }
 
 .window-header {

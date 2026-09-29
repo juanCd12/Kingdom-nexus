@@ -116,3 +116,4 @@ form.addEventListener("submit", async function(event){
 
     window.location.href = destino
 })
+
