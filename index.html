@@ -90,14 +90,13 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="register.html" class="btn-primary">
-            Registrarse
+          <a href="#planes" class="btn-primary">
+            Elegir un plan
             <i data-lucide="arrow-right"></i>
           </a>
 
           <a href="#producto" class="btn-secondary">
             Ver plataforma
-
             <i data-lucide="play-circle"></i>
           </a>
         </div>
@@ -267,116 +266,14 @@
             </div>
           </div>
 
-          <!-- Dashboard Mockup -->
-
           <div class="dashboard-preview">
             <div class="dashboard-window">
-              <div class="window-header">
-                <div class="window-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-
-                <span> Kingdom Nexus </span>
-
-                <div class="window-profile">
-                  <i data-lucide="user"></i>
-                </div>
-              </div>
-
-              <div class="dashboard-body">
-                <aside class="preview-sidebar">
-                  <div class="preview-logo">KN</div>
-
-                  <div class="preview-menu">
-                    <span class="active">
-                      <i data-lucide="layout-dashboard"></i>
-                    </span>
-
-                    <span>
-                      <i data-lucide="package"></i>
-                    </span>
-
-                    <span>
-                      <i data-lucide="warehouse"></i>
-                    </span>
-
-                    <span>
-                      <i data-lucide="shopping-cart"></i>
-                    </span>
-
-                    <span>
-                      <i data-lucide="users"></i>
-                    </span>
-
-                    <span>
-                      <i data-lucide="bar-chart-3"></i>
-                    </span>
-                  </div>
-                </aside>
-
-                <div class="preview-content">
-                  <div class="preview-top">
-                    <div>
-                      <span> Dashboard </span>
-
-                      <h3>Resumen general</h3>
-                    </div>
-
-                    <div class="preview-date">
-                      <i data-lucide="calendar"></i>
-                      Agosto 2026
-                    </div>
-                  </div>
-
-                  <div class="preview-cards">
-                    <div class="preview-card">
-                      <span> Productos </span>
-
-                      <strong> 1.245 </strong>
-
-                      <small class="positive"> +8.2% </small>
-                    </div>
-
-                    <div class="preview-card">
-                      <span> Ventas </span>
-
-                      <strong> $8.4M </strong>
-
-                      <small class="positive"> +12.4% </small>
-                    </div>
-
-                    <div class="preview-card">
-                      <span> Stock bajo </span>
-
-                      <strong> 18 </strong>
-
-                      <small class="warning"> Requiere atención </small>
-                    </div>
-                  </div>
-
-                  <div class="preview-chart">
-                    <div class="chart-header">
-                      <span> Movimiento de ventas </span>
-
-                      <span> Últimos 7 días </span>
-                    </div>
-
-                    <div class="chart">
-                      <div class="chart-bars">
-                        <span style="height: 35%"></span>
-                        <span style="height: 48%"></span>
-                        <span style="height: 42%"></span>
-                        <span style="height: 67%"></span>
-                        <span style="height: 58%"></span>
-                        <span style="height: 82%"></span>
-                        <span style="height: 72%"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <iframe
+                src="planEmpresarial/dashboard.html?preview=1"
+                title="Vista previa del dashboard empresarial de Kingdom Nexus"
+                loading="lazy"
+                tabindex="-1"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -623,7 +520,10 @@
             <div class="pricing-header">
               <h3>Básico</h3>
 
-              <p class="plan-description">pequeños negocios, tiendas, emprendimientos y comercios con una sola ubicación.</p>
+              <p class="plan-description">
+                pequeños negocios, tiendas, emprendimientos y comercios con una
+                sola ubicación.
+              </p>
             </div>
 
             <div class="price">
@@ -632,13 +532,15 @@
               <small> /mes </small>
             </div>
 
-            <p class="price-note">Controla productos, inventario y ventas desde un solo lugar.</p>
+            <p class="price-note">
+              Controla productos, inventario y ventas desde un solo lugar.
+            </p>
 
             <div class="trial-label">
               <i data-lucide="gift"></i>
               14 días gratis
             </div>
-  
+
             <ul class="features">
               <li>
                 <i data-lucide="check"></i>
@@ -890,8 +792,8 @@
           decisiones con Kingdom Nexus.
         </p>
 
-        <a href="register.html" class="btn-cta">
-          Contactanos
+        <a href="#planes" class="btn-cta">
+          Elegir un plan
           <i data-lucide="arrow-right"></i>
         </a>
       </div>
@@ -981,6 +883,28 @@
 
     <script>
       lucide.createIcons();
+
+      const dashboardPreview = document.querySelector(".dashboard-window");
+      const dashboardFrame = dashboardPreview?.querySelector("iframe");
+
+      if (dashboardPreview && dashboardFrame) {
+        const resizeDashboardPreview = () => {
+          const availableWidth = dashboardPreview.clientWidth;
+          const sourceWidth =
+            availableWidth < 480 ? 460 : availableWidth < 650 ? 650 : 1200;
+          const sourceHeight =
+            availableWidth < 480 ? 520 : availableWidth < 650 ? 640 : 760;
+          const scale = availableWidth / sourceWidth;
+
+          dashboardPreview.style.aspectRatio = `${sourceWidth} / ${sourceHeight}`;
+          dashboardFrame.style.width = `${sourceWidth}px`;
+          dashboardFrame.style.height = `${sourceHeight}px`;
+          dashboardFrame.style.transform = `scale(${scale})`;
+        };
+
+        new ResizeObserver(resizeDashboardPreview).observe(dashboardPreview);
+        resizeDashboardPreview();
+      }
     </script>
   </body>
 </html>

@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="../css/plan-dashboard.css" />
   </head>
   <body>
+    <script>
+      if (new URLSearchParams(window.location.search).has("preview")) {
+        document.body.classList.add("dashboard-embed-preview");
+      }
+    </script>
     <div class="dashboard-shell">
       <aside class="sidebar">
         <div>
