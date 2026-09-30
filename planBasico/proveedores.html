@@ -27,9 +27,11 @@
             <a class="nav-item" href="dashboard.html">
               <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
             </a>
-            <button class="nav-item" type="button">
-              <i data-lucide="package"></i><span>Productos</span>
-            </button>
+            
+              <a class="nav-item" href="../planBasico/productos.html">
+                <i data-lucide="package"></i><span>Productos</span>
+              </a>
+            
             <button class="nav-item" type="button">
               <i data-lucide="boxes"></i><span>Inventario</span>
             </button>
@@ -48,11 +50,13 @@
             <button class="nav-item" type="button">
               <i data-lucide="chart-no-axes-combined"></i><span>Reportes avanzados</span>
             </button>
+            
           </nav>
         </div>
-        <div class="plan-card">
-          <span class="plan-pill">BASICO</span><strong>Plan Basico</strong><small>$49.900 / mes</small>
-        </div>
+          <button class="logout-button" type="button">
+            <i data-lucide="log-out"></i>
+            Cerrar sesión
+          </button>
       </aside>
 
       <main class="main-panel">
@@ -221,5 +225,6 @@
     <script src="../js/operacion_comercial/supliers.js"></script>
     <script src="../js/planBasico/proveedores.js"></script>
     <script src="../js/dashboard.js"></script>
+    <script src="../js/logout.js"></script>
   </body>
 </html>

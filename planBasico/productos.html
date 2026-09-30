@@ -25,7 +25,7 @@
             <img src="../images/nexus.png" alt="Kingdom Nexus" />
           </div>
           <nav class="nav-menu" aria-label="Menú profesional">
-            <a class="nav-item" href="dashboard.html">
+            <a class="nav-item" href="../planBasico/dashboard.html">
               <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
             </a>
             <a
@@ -44,9 +44,9 @@
             <button class="nav-item" type="button">
               <i data-lucide="users"></i><span>Clientes</span>
             </button>
-            <button class="nav-item" type="button">
+            <a class="nav-item" href="../planBasico/proveedores.html">
               <i data-lucide="truck"></i><span>Proveedores</span>
-            </button>
+            </a>
             <button class="nav-item" type="button">
               <i data-lucide="shopping-cart"></i><span>Compras</span>
             </button>
@@ -56,10 +56,12 @@
             </button>
           </nav>
         </div>
-        <div class="plan-card">
-          <span class="plan-pill">BASICO</span><strong>Plan Basico</strong
-          ><small>$49.900 / mes</small>
-        </div>
+        
+          <button class="logout-button" type="button">
+            <i data-lucide="log-out"></i>
+            Cerrar sesión
+          </button>
+        
       </aside>
 
       <main class="main-panel">
@@ -344,7 +346,8 @@
         lucide.createIcons();
       }
     </script>
-    <script src="../js/dashboard.js"></script>
     <script src="../js/products.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/dashboard.js"></script>
   </body>
 </html>

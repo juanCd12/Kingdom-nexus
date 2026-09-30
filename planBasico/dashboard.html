@@ -40,7 +40,7 @@
             <button class="nav-item" type="button">
               <i data-lucide="users"></i><span>Clientes</span>
             </button>
-            <a class="nav-item" href="proveedores.html">
+            <a class="nav-item" href="./proveedores.html">
               <i data-lucide="truck"></i><span>Proveedores</span>
             </a>
             <button class="nav-item" type="button">
@@ -53,10 +53,7 @@
           </nav>
         </div>
         <div class="sidebar-footer">
-          <div class="plan-card">
-            <span class="plan-pill">BASICO</span><strong>Plan Basico</strong
-            ><small>$49.900 / mes</small>
-          </div>
+          
           <button class="logout-button" type="button">
             <i data-lucide="log-out"></i>
             Cerrar sesión
@@ -104,7 +101,7 @@
             <div class="stat-header">
               <span>Productos</span><i data-lucide="package-check"></i>
             </div>
-            <strong>--</strong><small>Catálogo completo</small>
+            <strong id="count"></strong><small>Catálogo completo</small>
           </article>
           <article class="stat-card">
             <div class="stat-header">
@@ -224,6 +221,7 @@
     <script>
       lucide.createIcons();
     </script>
-    <script src="/js/logout.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/logout.js"></script>
   </body>
 </html>
