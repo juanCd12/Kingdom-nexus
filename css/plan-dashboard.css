@@ -118,7 +118,7 @@
 }
 
 .primary-button {
-    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    background: linear-gradient(135deg, #f97316, #ea580c);
     color: #ffffff;
 }
 
@@ -130,7 +130,7 @@
 .primary-button:hover,
 .secondary-button:hover,
 .icon-button:hover {
-    transform: translateY(-1px);
+    transform: none;
 }
 
 .supplier-table-wrapper {

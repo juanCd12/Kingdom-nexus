@@ -1,9 +1,9 @@
-const SUPABASE_URL = "https://poghdicqjjrtxucuoqev.supabase.co";
-const SUPABASE_KEY = "sb_publishable_-jDBMc58Msbi22Rys16pAQ_T3Q2CJ8I";
+const SUPABASE_URL1 = "https://poghdicqjjrtxucuoqev.supabase.co";
+const SUPABASE_KEY1 = "sb_publishable_-jDBMc58Msbi22Rys16pAQ_T3Q2CJ8I";
 
-const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+const supabaseClient1 = supabase.createClient(
+    SUPABASE_URL1,
+    SUPABASE_KEY1
 );
 
 const logoutButton = document.querySelector(".logout-button");

@@ -33,14 +33,14 @@
 
     background: var(--primary);
 
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 18px rgba(249, 115, 22, 0.18);
 }
 
 
 .btn-primary:hover {
     background: var(--primary-dark);
 
-    transform: translateY(-1px);
+    transform: none;
 }
 
 
