@@ -2,6 +2,12 @@
    DOM
 ===================================================== */
 
+const SUPABASE_URL = "https://poghdicqjjrtxucuoqev.supabase.co";
+const SUPABASE_KEY = "sb_publishable_-jDBMc58Msbi22Rys16pAQ_T3Q2CJ8I";
+const supabaseClient = window.supabase?.createClient
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
+
 const form = document.getElementById("registerForm");
 
 const pass = document.getElementById("password");
@@ -13,6 +19,9 @@ const generatePass = document.getElementById("generatePassword");
 const alertContainer = document.getElementById("alertContainer");
 
 const alertMessage = document.getElementById("alertMessage");
+
+const submitButton = form.querySelector('[type="submit"]');
+const submitButtonLabel = document.getElementById("registerButtonLabel");
 
 const toggles = document.querySelectorAll(".toggle-password");
 
@@ -64,9 +73,16 @@ if (!planesValidos.includes(plan)) {
 ===================================================== */
 
 form.addEventListener("submit", async function (event) {
-
     event.preventDefault();
 
+    if (submitButton.disabled) {
+        return;
+    }
+
+    if (!supabaseClient) {
+        showAlert("No se pudo conectar con el servicio de registro. Recarga la página e inténtalo nuevamente.");
+        return;
+    }
 
     /* Validación HTML */
 
@@ -97,103 +113,66 @@ form.addEventListener("submit", async function (event) {
 
     const firstName = datos.firstName;
     const lastName = datos.lastName;
-    const email = datos.email;
+    const email = datos.email.trim().toLowerCase();
     const password = datos.password;
-    const confirmPassword = datos.confirmPassword;
     const policy = datos.terms === "on";
 
-
-    if(password !== confirmPassword){
-        showAlert("Las contraseñas no coinciden");
+    if (!policy) {
+        showAlert("Debes aceptar los términos y condiciones.");
         return;
     }
 
-    if(!policy){
-        showAlert("Debes aceptar los terminos y condiciones");
-        return;
+    submitButton.disabled = true;
+    submitButtonLabel.textContent = "Creando cuenta...";
+
+    try {
+        const { data, error } = await supabaseClient.auth.signUp({
+            email,
+            password
+        });
+
+        if (error) {
+            throw error;
+        }
+
+        const user = data?.user;
+
+        if (!user) {
+            throw new Error("Supabase no devolvió los datos de la cuenta creada.");
+        }
+
+        const { error: registerError } = await supabaseClient
+            .from("register")
+            .insert({
+                id: user.id,
+                name: firstName.trim(),
+                lastname: lastName.trim(),
+                email,
+                policy,
+                plans: plan
+            });
+
+        if (registerError) {
+            console.error("No se pudo guardar el perfil del usuario:", registerError);
+            showAlert(`La cuenta se creó, pero no se pudo guardar el perfil: ${registerError.message}`);
+            submitButtonLabel.textContent = "Perfil pendiente";
+            return;
+        }
+
+        submitButtonLabel.textContent = "Cuenta creada";
+        showAlert(data.session
+            ? "Cuenta creada correctamente. Ahora puedes iniciar sesión."
+            : "Cuenta creada. Confirma tu correo y luego inicia sesión.");
+
+        window.setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1800);
+    } catch (error) {
+        console.error("No se pudo completar el registro:", error);
+        showAlert(error?.message || "No se pudo completar el registro. Inténtalo nuevamente.");
+        submitButton.disabled = false;
+        submitButtonLabel.textContent = "Registrarse";
     }
-
-    //CREAR USUARIO EN SUPABASE AUTH
-
-    const { data, error } = await supabaseClient.auth.signUp({
-    email: email,
-    password: password
-});
-
-if (error) {
-    console.error("❌ ERROR SUPABASE AUTH:", error);
-    showAlert(error.message);
-    return;
-}
-
-const user = data.user;
-
-if (!user) {
-    console.error("❌ No se recibió el usuario.");
-    showAlert("No se pudo obtener el usuario.");
-    return;
-}
-
-console.log("✅ Usuario creado:", user.id);
-
-
-/* =================================================
-   COMPROBAR SESIÓN ACTUAL
-================================================= */
-
-const {
-    data: { user: currentUser },
-    error: userError
-} = await supabaseClient.auth.getUser();
-
-console.log("Usuario actual según Supabase:", currentUser);
-console.log("ID de sesión:", currentUser?.id);
-console.log("ID que voy a insertar:", user.id);
-console.log("Error obteniendo usuario:", userError);
-
-
-/* =================================================
-   GUARDAR DATOS EN REGISTER
-================================================= */
-
-
-const { data: registerData, error: registerError } =
-    await supabaseClient
-        .from("register")
-        .insert({
-            id: user.id,
-            name: firstName,
-            lastname: lastName,
-            email: email,
-            policy: policy,
-            plans: plan
-        })
-        
-
-if (registerError) {
-
-    console.error("❌ ERROR REGISTER:", registerError);
-    console.error("Código:", registerError.code);
-    console.error("Mensaje:", registerError.message);
-    console.error("Detalles:", registerError.details);
-    console.error("Hint:", registerError.hint);
-
-    return;
-}
-
-console.log("✅ REGISTER GUARDADO:", registerData);
-
-showAlert("Usuario registrado correctamente");
-
-window.location.href = "login.html";
-
-
-
-
-    /* Continuar */
-
-   // window.location.href = "login.html";
-
 });
 
 function showAlert(message) {

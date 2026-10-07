@@ -208,7 +208,7 @@
                 <form
                     id="registerForm"
                     novalidate
-                    method="get"
+                    method="post"
                 >
 
 
@@ -341,7 +341,6 @@
                                 class="toggle-password"
                                 data-target="password"
                                 aria-label="Mostrar contraseña"
-                                onclick="togglePassword()"
                             >
 
                                 <i data-lucide="eye"></i>
@@ -551,7 +550,7 @@
                         class="register-button"
                     >
 
-                        Registrarse
+                        <span id="registerButtonLabel">Registrarse</span>
 
                         <i data-lucide="arrow-right"></i>
 

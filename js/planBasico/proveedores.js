@@ -6,19 +6,29 @@ const cancelSupplierEdit = document.getElementById('cancelSupplierEdit');
 const submitSupplierButton = document.getElementById('submitSupplierButton');
 
 const suppliersService = window.KingdomNexus?.suppliers || window.suppliers;
+let supplierMessageTimeout;
 
 function showSupplierMessage(message, type = 'info') {
   if (!supplierMessage) {
     return;
   }
 
+  window.clearTimeout(supplierMessageTimeout);
   supplierMessage.textContent = message;
   supplierMessage.className = `supplier-message visible ${type}`;
+
+  if (type === 'success') {
+    supplierMessageTimeout = window.setTimeout(() => {
+      supplierMessage.textContent = '';
+      supplierMessage.className = 'supplier-message';
+    }, 4000);
+  }
 }
 
 function resetSupplierForm() {
   supplierForm.reset();
   supplierEditId.value = '';
+  document.getElementById('supplierStatus').value = 'true';
   submitSupplierButton.textContent = 'Guardar proveedor';
   cancelSupplierEdit.hidden = true;
 }
@@ -33,7 +43,7 @@ function getSupplierPayload() {
     address: document.getElementById('supplierAddress').value.trim(),
     city: document.getElementById('supplierCity').value.trim(),
     notes: document.getElementById('supplierNotes').value.trim(),
-    is_active: true
+    is_active: document.getElementById('supplierStatus').value === 'true'
   };
 }
 
@@ -55,6 +65,9 @@ function renderSuppliers(rows = []) {
     .map((supplier) => {
       const statusLabel = supplier.is_active ? 'Activo' : 'Inactivo';
       const statusClass = supplier.is_active ? 'active' : 'inactive';
+      const action = supplier.is_active ? 'deactivate' : 'activate';
+      const actionLabel = supplier.is_active ? 'Desactivar' : 'Activar';
+      const actionClass = supplier.is_active ? 'delete' : 'activate';
 
       return `
         <tr>
@@ -71,8 +84,8 @@ function renderSuppliers(rows = []) {
               <button class="icon-button edit" type="button" data-action="edit" data-id="${supplier.id}">
                 Editar
               </button>
-              <button class="icon-button delete" type="button" data-action="delete" data-id="${supplier.id}">
-                Eliminar
+              <button class="icon-button ${actionClass}" type="button" data-action="${action}" data-id="${supplier.id}">
+                ${actionLabel}
               </button>
             </div>
           </td>
@@ -147,6 +160,7 @@ function fillSupplierForm(supplier) {
   document.getElementById('supplierAddress').value = supplier.address || '';
   document.getElementById('supplierCity').value = supplier.city || '';
   document.getElementById('supplierNotes').value = supplier.notes || '';
+  document.getElementById('supplierStatus').value = String(supplier.is_active === true);
 
   supplierEditId.value = supplier.id;
   submitSupplierButton.textContent = 'Actualizar proveedor';
@@ -179,16 +193,24 @@ async function handleSupplierTableClick(event) {
     return;
   }
 
-  if (action === 'delete') {
-    const shouldDelete = window.confirm('¿Deseas eliminar este proveedor?');
+  if (action === 'deactivate' || action === 'activate') {
+    const isDeactivation = action === 'deactivate';
+    const confirmation = isDeactivation
+      ? '¿Deseas desactivar este proveedor?'
+      : '¿Deseas activar este proveedor?';
+    const shouldUpdateStatus = window.confirm(confirmation);
 
-    if (!shouldDelete) {
+    if (!shouldUpdateStatus) {
       return;
     }
 
     try {
-      await suppliersService.softDelete(id);
-      showSupplierMessage('Proveedor eliminado correctamente.', 'success');
+      if (isDeactivation) {
+        await suppliersService.softDelete(id);
+      } else {
+        await suppliersService.activate(id);
+      }
+      showSupplierMessage(`Proveedor ${isDeactivation ? 'desactivado' : 'activado'} correctamente.`, 'success');
       resetSupplierForm();
       await loadSuppliers();
     } catch (error) {
