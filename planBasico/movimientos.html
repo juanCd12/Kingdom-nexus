@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movimientos | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú profesional">
+            <a class="nav-item" href="../planBasico/dashboard.html">
+              <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="productos.html">
+              <i data-lucide="package"></i><span>Productos</span>
+            </a>
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <a
+              class="nav-item active"
+              href="movimientos.html"
+              aria-current="page"
+            >
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </a>
+            <button class="nav-item" type="button">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </button>
+            <a class="nav-item" href="../planBasico/proveedores.html">
+              <i data-lucide="truck"></i><span>Proveedores</span>
+            </a>
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i
+              ><span>Reportes avanzados</span>
+            </button>
+          </nav>
+        </div>
+
+        <button class="logout-button" type="button">
+          <i data-lucide="log-out"></i>
+          Cerrar sesión
+        </button>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Panel Basico</p>
+            <h1>Movimientos de inventario</h1>
+            <p class="module-intro">
+              Consulta el historial de entradas y salidas que afectan las
+              existencias. Este módulo es de solo lectura: el registro de
+              movimientos se habilitará cuando la operación segura de
+              inventario esté configurada y verificada en Supabase.
+            </p>
+          </div>
+          <div class="topbar-actions">
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong id="userName">Usuario</strong>
+                <small id="userEmail">usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="module-workspace" aria-labelledby="movimientosTitulo">
+          <div class="module-panel active">
+            <div class="panel-header">
+              <h3 id="movimientosTitulo">Historial de movimientos</h3>
+            </div>
+
+            <p class="supplier-message info visible" role="note">
+              Integración pendiente: el registro de entradas y salidas, y el
+              reverso de movimientos, estarán disponibles después de ejecutar y
+              verificar la migración SQL y la función atómica de inventario.
+              Mientras tanto, este módulo solo permite consultar.
+            </p>
+
+            <div
+              id="movimientosFeedback"
+              class="module-feedback"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></div>
+
+            <div
+              class="module-form"
+              role="search"
+              aria-label="Buscar y filtrar movimientos"
+            >
+              <div class="form-grid">
+                <label for="buscarMovimiento">
+                  <span>Buscar</span>
+                  <input
+                    type="search"
+                    id="buscarMovimiento"
+                    name="buscar"
+                    autocomplete="off"
+                    placeholder="Nombre del producto o SKU"
+                  />
+                </label>
+                <label for="filtroTipoMovimiento">
+                  <span>Tipo</span>
+                  <select id="filtroTipoMovimiento" name="tipo">
+                    <option value="todos">Todos</option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-actions">
+                <button
+                  type="button"
+                  class="secondary-button"
+                  id="limpiarFiltrosMovimiento"
+                >
+                  Limpiar filtros
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table" aria-label="Lista de movimientos de inventario">
+                <thead>
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">SKU</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Registrado por</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="movimientosTabla"></tbody>
+              </table>
+            </div>
+
+            <section
+              class="module-form"
+              id="movimientoDetalle"
+              hidden
+              aria-labelledby="movimientoDetalleTitulo"
+            >
+              <div class="panel-header">
+                <h3 id="movimientoDetalleTitulo" tabindex="-1">
+                  Detalle del movimiento
+                </h3>
+              </div>
+              <div class="table-wrap">
+                <table class="data-table" aria-label="Detalle del movimiento">
+                  <tbody id="movimientoDetalleContenido"></tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <button
+                  type="button"
+                  class="secondary-button"
+                  id="cerrarDetalleMovimiento"
+                >
+                  Cerrar
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    </script>
+    <script src="../js/movimientos.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>
