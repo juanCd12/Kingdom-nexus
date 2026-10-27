@@ -193,9 +193,9 @@ async function handleSupplierTableClick(event) {
     return;
   }
 
-  if (action === 'deactivate' || action === 'activate') {
-    const isDeactivation = action === 'deactivate';
-    const confirmation = isDeactivation
+  if (action === 'desactivate' || action === 'activate') {
+    const isDesactivation = action === 'desactivate';
+    const confirmation = isDesactivation
       ? '¿Deseas desactivar este proveedor?'
       : '¿Deseas activar este proveedor?';
     const shouldUpdateStatus = window.confirm(confirmation);
@@ -205,12 +205,12 @@ async function handleSupplierTableClick(event) {
     }
 
     try {
-      if (isDeactivation) {
+      if (isDesactivation) {
         await suppliersService.softDelete(id);
       } else {
         await suppliersService.activate(id);
       }
-      showSupplierMessage(`Proveedor ${isDeactivation ? 'desactivado' : 'activado'} correctamente.`, 'success');
+      showSupplierMessage(`Proveedor ${isDesactivation ? 'desactivado' : 'activado'} correctamente.`, 'success');
       resetSupplierForm();
       await loadSuppliers();
     } catch (error) {
