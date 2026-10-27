@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Profesional | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      try {
+        if (localStorage.getItem("kingdom-nexus-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        console.warn("No se pudo recuperar el tema guardado.", error);
+      }
+    </script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/dashboard-theme.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú Profesional">
+            <button class="nav-item active" type="button">
+              <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="package"></i><span>Productos</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="building-2"></i><span>Sucursales</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="truck"></i><span>Proveedores</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-bag"></i><span>Ventas</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="bell-ring"></i><span>Alertas inteligentes</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="history"></i><span>Historial</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i
+              ><span>Reportes avanzados</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="user-round-cog"></i><span>Usuarios</span>
+            </button>
+          </nav>
+        </div>
+        <div class="plan-card">
+          <span class="plan-pill">PROFESIONAL</span
+          ><strong>Plan Profesional</strong><small>$99.900 / mes</small>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Panel Profesional</p>
+            <h1>Bienvenido a Kingdom Nexus</h1>
+          </div>
+          <div class="topbar-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Activar modo oscuro"
+              aria-pressed="false"
+            >
+              <span data-theme-icon aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6.5 6.5 0 0 0 8.268 8.268c.344-.215.825-.003.803.401"/></svg
+              ></span>
+            </button>
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong>Usuario</strong><small>usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="hero-summary">
+          <div class="summary-copy">
+            <span class="summary-tag">Plan Profesional</span>
+            <h2>Más control para una operación en crecimiento.</h2>
+            <p>
+              Administra hasta cinco sucursales, inventario, ventas, compras y
+              movimientos desde un solo espacio.
+            </p>
+          </div>
+          <div class="summary-card">
+            <span>Próximo cobro</span><strong>$99.900</strong
+            ><small>Se cobrará al finalizar la prueba gratuita.</small>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-header">
+              <span>Sucursales</span><i data-lucide="building-2"></i>
+            </div>
+            <strong>--</strong><small>Hasta 5 sucursales</small>
+          </article>
+          <article class="stat-card">
+            <div class="stat-header">
+              <span>Productos</span><i data-lucide="package-check"></i>
+            </div>
+            <strong>--</strong><small>Catálogo completo</small>
+          </article>
+          <article class="stat-card">
+            <div class="stat-header">
+              <span>Movimientos</span><i data-lucide="arrow-right-left"></i>
+            </div>
+            <strong>--</strong><small>Historial y trazabilidad</small>
+          </article>
+          <article class="stat-card">
+            <div class="stat-header">
+              <span>Alertas</span><i data-lucide="bell-ring"></i>
+            </div>
+            <strong>--</strong><small>Alertas inteligentes</small>
+          </article>
+        </section>
+
+        <section class="content-grid plan-module-grid">
+          <article class="panel panel-large">
+            <div class="panel-header">
+              <h3>Módulos del plan</h3>
+              <span class="panel-badge">Profesional</span>
+            </div>
+            <div class="modules-grid">
+              <div class="module-item enabled">
+                <i data-lucide="package"></i>
+                <div>
+                  <strong>Productos</strong
+                  ><small>Gestión completa del catálogo</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="boxes"></i>
+                <div>
+                  <strong>Inventario</strong
+                  ><small>Trazabilidad de existencias</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="building-2"></i>
+                <div>
+                  <strong>Sucursales</strong><small>Hasta 5 ubicaciones</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="arrow-right-left"></i>
+                <div>
+                  <strong>Movimientos</strong
+                  ><small>Entradas, salidas y transferencias</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="users"></i>
+                <div>
+                  <strong>Clientes</strong><small>Gestión de clientes</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="truck"></i>
+                <div>
+                  <strong>Proveedores</strong
+                  ><small>Gestión de proveedores</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="shopping-cart"></i>
+                <div>
+                  <strong>Compras</strong><small>Gestión de compras</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="shopping-bag"></i>
+                <div>
+                  <strong>Ventas</strong><small>Gestión de ventas</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="user-round-cog"></i>
+                <div>
+                  <strong>Usuarios</strong><small>Hasta 10 usuarios</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="bell-ring"></i>
+                <div>
+                  <strong>Alertas inteligentes</strong
+                  ><small>Seguimiento de incidencias</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="history"></i>
+                <div>
+                  <strong>Historial</strong
+                  ><small>Historial de movimientos</small>
+                </div>
+              </div>
+              <div class="module-item enabled">
+                <i data-lucide="chart-no-axes-combined"></i>
+                <div>
+                  <strong>Reportes avanzados</strong
+                  ><small>Indicadores para decidir mejor</small>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <h3>Actividad reciente</h3>
+              <span class="panel-badge">Profesional</span>
+            </div>
+            <ul class="activity-list">
+              <li>
+                <span class="dot success"></span>
+                <div>
+                  <strong>Actividad de inventario</strong
+                  ><small>Sin datos recientes</small>
+                </div>
+              </li>
+              <li>
+                <span class="dot info"></span>
+                <div>
+                  <strong>Movimientos registrados</strong
+                  ><small>Sin datos recientes</small>
+                </div>
+              </li>
+              <li>
+                <span class="dot warning"></span>
+                <div>
+                  <strong>Alertas pendientes</strong
+                  ><small>Sin datos recientes</small>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="../js/dashboard-theme.js"></script>
+  </body>
+</html>

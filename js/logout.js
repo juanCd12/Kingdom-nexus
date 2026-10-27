@@ -11,11 +11,11 @@ const logoutButton = document.querySelector(".logout-button");
 /* LOGOUT */
 
 logoutButton.addEventListener("click", async function(){
-    const { error } = await supabaseClient.auth.signOut();
+    const { error } = await supabaseClient1.auth.signOut();
 
     if(error){
         console.error("Error al cerrar sesión")
     }
 
-    window.location.href = "../login.html"
+    window.location.href = "../paginas/login.html"
 })

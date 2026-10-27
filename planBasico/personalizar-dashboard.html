@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalizar dashboard | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/settings.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú Básico">
+            <a class="nav-item" href="./dashboard.html"
+              ><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a
+            >
+            <a class="nav-item" href="./productos.html"
+              ><i data-lucide="package"></i><span>Productos</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </button>
+            <a class="nav-item" href="./proveedores.html"
+              ><i data-lucide="truck"></i><span>Proveedores</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i
+              ><span>Reportes avanzados</span>
+            </button>
+            <details class="nav-group">
+              <summary class="nav-item">
+                <i data-lucide="settings-2"></i><span>Configuraciones</span
+                ><i class="nav-chevron" data-lucide="chevron-down"></i>
+              </summary>
+              <div class="nav-submenu">
+                <a class="nav-subitem" href="./cambiar-plan.html"
+                  >Cambiar plan</a
+                >
+                <a class="nav-subitem" href="./cambiar-contrasena.html"
+                  >Cambiar contraseña</a
+                >
+                <a class="nav-subitem" href="./administrar-usuarios.html"
+                  >Administrar usuarios</a
+                >
+                <a
+                  class="nav-subitem"
+                  href="./personalizar-dashboard.html"
+                  aria-current="page"
+                  >Personalizar dashboard</a
+                >
+              </div>
+            </details>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <button class="logout-button" type="button">
+            <i data-lucide="log-out"></i>Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Configuraciones</p>
+            <h1>Personalizar dashboard</h1>
+            <p class="module-intro">
+              Elige qué información quieres tener a la vista al entrar.
+            </p>
+          </div>
+          <div class="topbar-actions">
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong id="userName">Usuario</strong
+                ><small id="userEmail">usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="module-workspace settings-workspace">
+          <div class="module-panel active">
+            <div class="panel-header">
+              <h3>Elementos visibles</h3>
+              <span class="panel-badge">Dashboard Básico</span>
+            </div>
+            <p>Selecciona los módulos que quieres mostrar en tu resumen.</p>
+            <div
+              class="settings-toggle-list"
+              aria-label="Preferencias del dashboard"
+            >
+              <label class="settings-toggle-row"
+                ><span class="settings-toggle-copy"
+                  ><strong>Resumen de productos</strong
+                  ><small>Conteo y estado del catálogo.</small></span
+                ><input
+                  type="checkbox"
+                  checked
+                  data-dashboard-preference="products"
+              /></label>
+              <label class="settings-toggle-row"
+                ><span class="settings-toggle-copy"
+                  ><strong>Sucursales</strong
+                  ><small>Información de la ubicación activa.</small></span
+                ><input
+                  type="checkbox"
+                  checked
+                  data-dashboard-preference="branches"
+              /></label>
+              <label class="settings-toggle-row"
+                ><span class="settings-toggle-copy"
+                  ><strong>Compras</strong
+                  ><small>Acceso rápido a la gestión de compras.</small></span
+                ><input
+                  type="checkbox"
+                  checked
+                  data-dashboard-preference="purchases"
+              /></label>
+              <label class="settings-toggle-row"
+                ><span class="settings-toggle-copy"
+                  ><strong>Alertas</strong
+                  ><small>Avisos importantes de inventario.</small></span
+                ><input
+                  type="checkbox"
+                  checked
+                  data-dashboard-preference="alerts"
+              /></label>
+              <label class="settings-toggle-row"
+                ><span class="settings-toggle-copy"
+                  ><strong>Actividad reciente</strong
+                  ><small
+                    >Últimos movimientos y eventos del negocio.</small
+                  ></span
+                ><input
+                  type="checkbox"
+                  checked
+                  data-dashboard-preference="recentActivity"
+              /></label>
+            </div>
+            <div
+              id="dashboardPreferencesFeedback"
+              class="module-feedback"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></div>
+            <div class="settings-actions dashboard-preferences-actions">
+              <button
+                id="saveDashboardPreferences"
+                class="primary-button"
+                type="button"
+              >
+                <i data-lucide="save"></i>Guardar preferencias</button
+              ><a class="secondary-button" href="./dashboard.html">Cancelar</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="../js/dashboard-preferences.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>

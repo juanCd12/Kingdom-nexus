@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambiar plan | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/settings.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú Básico">
+            <a class="nav-item" href="./dashboard.html"
+              ><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a
+            >
+            <a class="nav-item" href="./productos.html"
+              ><i data-lucide="package"></i><span>Productos</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </button>
+            <a class="nav-item" href="./proveedores.html"
+              ><i data-lucide="truck"></i><span>Proveedores</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i
+              ><span>Reportes avanzados</span>
+            </button>
+            <details class="nav-group">
+              <summary class="nav-item">
+                <i data-lucide="settings-2"></i><span>Configuraciones</span
+                ><i class="nav-chevron" data-lucide="chevron-down"></i>
+              </summary>
+              <div class="nav-submenu">
+                <a
+                  class="nav-subitem"
+                  href="./cambiar-plan.html"
+                  aria-current="page"
+                  >Cambiar plan</a
+                >
+                <a class="nav-subitem" href="./cambiar-contrasena.html"
+                  >Cambiar contraseña</a
+                >
+                <a class="nav-subitem" href="./administrar-usuarios.html"
+                  >Administrar usuarios</a
+                >
+                <a class="nav-subitem" href="./personalizar-dashboard.html"
+                  >Personalizar dashboard</a
+                >
+              </div>
+            </details>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <button class="logout-button" type="button">
+            <i data-lucide="log-out"></i>Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Configuraciones</p>
+            <h1>Cambiar plan</h1>
+            <p class="module-intro">
+              Compara las opciones disponibles para tu negocio.
+            </p>
+          </div>
+          <div class="topbar-actions">
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong id="userName">Usuario</strong
+                ><small id="userEmail">usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="module-workspace settings-workspace">
+          <div class="module-panel active">
+            <div class="panel-header">
+              <h3>Planes disponibles</h3>
+              <span class="panel-badge">Facturación mensual</span>
+            </div>
+            <div class="settings-plan-grid">
+              <article class="settings-plan-card current">
+                <div class="settings-plan-heading">
+                  <div>
+                    <h3>Básico</h3>
+                    <span class="settings-current-label">Plan actual</span>
+                    <p class="settings-plan-price">
+                      $49.900 <small>/ mes</small>
+                    </p>
+                  </div>
+                </div>
+                <ul class="settings-plan-features">
+                  <li><i data-lucide="check"></i>1 sucursal</li>
+                  <li><i data-lucide="check"></i>Inventario y movimientos</li>
+                  <li><i data-lucide="check"></i>Hasta 2 usuarios</li>
+                </ul>
+                <button
+                  class="settings-select-button"
+                  type="button"
+                  data-select-plan="basic"
+                >
+                  <i data-lucide="check"></i><span>Elegir plan</span>
+                </button>
+              </article>
+              <article class="settings-plan-card">
+                <div class="settings-plan-heading">
+                  <div>
+                    <h3>Profesional</h3>
+                    <p class="settings-plan-price">
+                      $99.900 <small>/ mes</small>
+                    </p>
+                  </div>
+                </div>
+                <ul class="settings-plan-features">
+                  <li><i data-lucide="check"></i>Hasta 5 sucursales</li>
+                  <li>
+                    <i data-lucide="check"></i>Compras y reportes avanzados
+                  </li>
+                  <li><i data-lucide="check"></i>Clientes y proveedores</li>
+                </ul>
+                <button
+                  class="settings-select-button"
+                  type="button"
+                  data-select-plan="professional"
+                >
+                  <i data-lucide="arrow-right"></i><span>Elegir plan</span>
+                </button>
+              </article>
+              <article class="settings-plan-card">
+                <div class="settings-plan-heading">
+                  <div>
+                    <h3>Empresarial</h3>
+                    <p class="settings-plan-price">
+                      $199.900 <small>/ mes</small>
+                    </p>
+                  </div>
+                </div>
+                <ul class="settings-plan-features">
+                  <li>
+                    <i data-lucide="check"></i>Sucursales y usuarios ilimitados
+                  </li>
+                  <li><i data-lucide="check"></i>Auditoría y permisos</li>
+                  <li><i data-lucide="check"></i>Reportes corporativos</li>
+                </ul>
+                <button
+                  class="settings-select-button"
+                  type="button"
+                  data-select-plan="enterprise"
+                >
+                  <i data-lucide="arrow-right"></i><span>Elegir plan</span>
+                </button>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      lucide.createIcons();
+
+      document.querySelectorAll("[data-select-plan]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll("[data-select-plan]").forEach((option) => {
+            const selected = option === button;
+            option
+              .closest(".settings-plan-card")
+              .classList.toggle("is-selected", selected);
+            option.setAttribute("aria-pressed", String(selected));
+            option.querySelector("span").textContent = selected
+              ? "Plan elegido"
+              : "Elegir plan";
+          });
+        });
+      });
+    </script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>
