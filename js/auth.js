@@ -1,3 +1,11 @@
+const SUPABASE_URL4 = "https://poghdicqjjrtxucuoqev.supabase.co";
+const SUPABASE_KEY4 = "sb_publishable_-jDBMc58Msbi22Rys16pAQ_T3Q2CJ8I";
+
+const supabaseClient4 = supabase.createClient(
+    SUPABASE_URL4,
+    SUPABASE_KEY4
+);
+
 /* =====================================================
    DOM
 ===================================================== */
@@ -115,7 +123,7 @@ form.addEventListener("submit", async function (event) {
 
     //CREAR USUARIO EN SUPABASE AUTH
 
-    const { data, error } = await supabaseClient.auth.signUp({
+    const { data, error } = await supabaseClient4.auth.signUp({
     email: email,
     password: password
 });
@@ -144,7 +152,7 @@ console.log("✅ Usuario creado:", user.id);
 const {
     data: { user: currentUser },
     error: userError
-} = await supabaseClient.auth.getUser();
+} = await supabaseClient4.auth.getUser();
 
 console.log("Usuario actual según Supabase:", currentUser);
 console.log("ID de sesión:", currentUser?.id);
@@ -158,7 +166,7 @@ console.log("Error obteniendo usuario:", userError);
 
 
 const { data: registerData, error: registerError } =
-    await supabaseClient
+    await supabaseClient4
         .from("register")
         .insert({
             id: user.id,
@@ -185,14 +193,8 @@ console.log("✅ REGISTER GUARDADO:", registerData);
 
 showAlert("Usuario registrado correctamente");
 
-window.location.href = "login.html";
+window.location.href = "../paginas/login.html";
 
-
-
-
-    /* Continuar */
-
-   // window.location.href = "login.html";
 
 });
 
@@ -617,4 +619,5 @@ function resetRequirements() {
     );
 
 }
+
 

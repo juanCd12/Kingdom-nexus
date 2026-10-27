@@ -12,19 +12,29 @@
     />
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      try {
+        if (localStorage.getItem("kingdom-nexus-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        console.warn("No se pudo recuperar el tema guardado.", error);
+      }
+    </script>
     <link rel="stylesheet" href="../../css/variables.css" />
     <link rel="stylesheet" href="../../css/base.css" />
     <link rel="stylesheet" href="../../css/dashboard.css" />
     <link rel="stylesheet" href="../../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../../css/dashboard-theme.css" />
   </head>
   <body>
     <div class="dashboard-shell">
       <aside class="sidebar">
         <div>
           <div class="brand-box">
-            <img src="../../images/nexus.png" alt="Kingdom Nexus" />
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
           </div>
-          <nav class="nav-menu" aria-label="Menú profesional">
+          <nav class="nav-menu" aria-label="Menú Básico">
             <button class="nav-item active" type="button">
               <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
             </button>
@@ -50,10 +60,29 @@
               <i data-lucide="chart-no-axes-combined"></i
               ><span>Reportes avanzados</span>
             </button>
+            <details class="nav-group">
+              <summary class="nav-item">
+                <i data-lucide="settings-2"></i><span>Configuraciones</span>
+                <i class="nav-chevron" data-lucide="chevron-down"></i>
+              </summary>
+              <div class="nav-submenu">
+                <a class="nav-subitem" href="./cambiar-plan.html"
+                  >Cambiar plan</a
+                >
+                <a class="nav-subitem" href="./cambiar-contrasena.html">
+                  Cambiar contraseña
+                </a>
+                <a class="nav-subitem" href="./administrar-usuarios.html">
+                  Administrar usuarios
+                </a>
+                <a class="nav-subitem" href="./personalizar-dashboard.html">
+                  Personalizar dashboard
+                </a>
+              </div>
+            </details>
           </nav>
         </div>
         <div class="sidebar-footer">
-          
           <button class="logout-button" type="button">
             <i data-lucide="log-out"></i>
             Cerrar sesión
@@ -68,6 +97,17 @@
             <h1>Bienvenido a Kingdom Nexus</h1>
           </div>
           <div class="topbar-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Activar modo oscuro"
+              aria-pressed="false"
+            >
+              <span data-theme-icon aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6.5 6.5 0 0 0 8.268 8.268c.344-.215.825-.003.803.401"/></svg
+              ></span>
+            </button>
             <div class="status-badge">
               <i data-lucide="shield-check"></i> Suscripción activa
             </div>
@@ -90,32 +130,29 @@
               movimientos desde un solo espacio.
             </p>
           </div>
-          <div class="summary-card">
-            <span>Próximo cobro</span><strong>$49.900</strong
-            ><small>Se cobrará al finalizar la prueba gratuita.</small>
-          </div>
+          
         </section>
 
         <section class="stats-grid">
-          <article class="stat-card">
+          <article class="stat-card" data-dashboard-section="products">
             <div class="stat-header">
               <span>Productos</span><i data-lucide="package-check"></i>
             </div>
             <strong id="count"></strong><small>Catálogo completo</small>
           </article>
-          <article class="stat-card">
+          <article class="stat-card" data-dashboard-section="branches">
             <div class="stat-header">
               <span>Sucursales</span><i data-lucide="building-2"></i>
             </div>
             <strong>--</strong><small>1 sucursal</small>
           </article>
-          <article class="stat-card">
+          <article class="stat-card" data-dashboard-section="purchases">
             <div class="stat-header">
               <span>Compras</span><i data-lucide="shopping-cart"></i>
             </div>
             <strong>--</strong><small>Gestión de proveedores</small>
           </article>
-          <article class="stat-card">
+          <article class="stat-card" data-dashboard-section="alerts">
             <div class="stat-header">
               <span>Alertas</span><i data-lucide="bell-ring"></i>
             </div>
@@ -184,9 +221,16 @@
                   ><small>Seguimiento de incidencias</small>
                 </div>
               </div>
+              <a class="module-item enabled" href="./cambiar-plan.html">
+                <i data-lucide="settings-2"></i>
+                <div>
+                  <strong>Configuraciones</strong
+                  ><small>Plan, seguridad, usuarios y personalización</small>
+                </div>
+              </a>
             </div>
           </article>
-          <article class="panel">
+          <article class="panel" data-dashboard-section="recentActivity">
             <div class="panel-header">
               <h3>Actividad reciente</h3>
               <span class="panel-badge">Básico</span>
@@ -221,6 +265,8 @@
     <script>
       lucide.createIcons();
     </script>
+    <script src="../js/dashboard-theme.js"></script>
+    <script src="../js/dashboard-preferences.js"></script>
     <script src="../js/dashboard.js"></script>
     <script src="../js/logout.js"></script>
   </body>

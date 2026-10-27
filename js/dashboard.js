@@ -15,7 +15,10 @@ if (sessionError) {
 }
 
 const user = sessionData?.session?.user;
-if (!user) return;
+if (!user) {
+  window.location.replace("../paginas/login.html");
+  return;
+}
 
 const { data, error } = await supabaseClient2
   .from("register")

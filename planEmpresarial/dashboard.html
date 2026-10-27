@@ -11,10 +11,20 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      try {
+        if (localStorage.getItem("kingdom-nexus-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        console.warn("No se pudo recuperar el tema guardado.", error);
+      }
+    </script>
     <link rel="stylesheet" href="../css/variables.css" />
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/dashboard-theme.css" />
   </head>
   <body>
     <script>
@@ -74,6 +84,17 @@
             <h1>Bienvenido a Kingdom Nexus</h1>
           </div>
           <div class="topbar-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Activar modo oscuro"
+              aria-pressed="false"
+            >
+              <span data-theme-icon aria-hidden="true"
+                ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6.5 6.5 0 0 0 8.268 8.268c.344-.215.825-.003.803.401"/></svg
+              ></span>
+            </button>
             <div class="status-badge">
               <i data-lucide="shield-check"></i> Suscripción activa
             </div>
@@ -237,5 +258,6 @@
     <script>
       lucide.createIcons();
     </script>
+    <script src="../js/dashboard-theme.js"></script>
   </body>
 </html>
