@@ -44,6 +44,10 @@ button {
     background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
 }
 
+[data-dashboard-section][hidden] {
+    display: none !important;
+}
+
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -108,6 +112,60 @@ button {
     color: var(--white);
     border-color: rgba(96, 165, 250, 0.2);
     box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.08);
+}
+
+.nav-group {
+    width: 100%;
+}
+
+.nav-group summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.nav-group summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-chevron {
+    width: 13px !important;
+    height: 13px !important;
+    margin-left: auto;
+    transition: transform 0.2s ease;
+}
+
+.nav-group[open] .nav-chevron {
+    transform: rotate(180deg);
+}
+
+.nav-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 4px 0 2px 19px;
+    padding-left: 10px;
+    border-left: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.nav-subitem {
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.62);
+    font: inherit;
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-subitem:hover,
+.nav-subitem:focus-visible {
+    color: var(--white);
+    background: rgba(37, 99, 235, 0.12);
+    outline: none;
 }
 
 .plan-card {
@@ -753,6 +811,10 @@ button {
     .nav-menu {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .nav-group {
+        grid-column: 1 / -1;
     }
 
     .hero-summary,

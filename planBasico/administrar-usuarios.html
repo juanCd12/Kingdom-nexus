@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar usuarios | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/settings.css" />
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú Básico">
+            <a class="nav-item" href="./dashboard.html"
+              ><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a
+            >
+            <a class="nav-item" href="./productos.html"
+              ><i data-lucide="package"></i><span>Productos</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </button>
+            <a class="nav-item" href="./proveedores.html"
+              ><i data-lucide="truck"></i><span>Proveedores</span></a
+            >
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i
+              ><span>Reportes avanzados</span>
+            </button>
+            <details class="nav-group">
+              <summary class="nav-item">
+                <i data-lucide="settings-2"></i><span>Configuraciones</span
+                ><i class="nav-chevron" data-lucide="chevron-down"></i>
+              </summary>
+              <div class="nav-submenu">
+                <a class="nav-subitem" href="./cambiar-plan.html"
+                  >Cambiar plan</a
+                >
+                <a class="nav-subitem" href="./cambiar-contrasena.html"
+                  >Cambiar contraseña</a
+                >
+                <a
+                  class="nav-subitem"
+                  href="./administrar-usuarios.html"
+                  aria-current="page"
+                  >Administrar usuarios</a
+                >
+                <a class="nav-subitem" href="./personalizar-dashboard.html"
+                  >Personalizar dashboard</a
+                >
+              </div>
+            </details>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <button class="logout-button" type="button">
+            <i data-lucide="log-out"></i>Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Configuraciones</p>
+            <h1>Administrar usuarios</h1>
+            <p class="module-intro">
+              Controla quién puede acceder a este espacio de trabajo.
+            </p>
+          </div>
+          <div class="topbar-actions">
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong id="userName">Usuario</strong
+                ><small id="userEmail">usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="module-workspace settings-workspace">
+          <div class="module-panel active">
+            <div class="panel-header">
+              <h3>Usuarios del plan</h3>
+              <span class="panel-badge">1 de 2 espacios</span>
+            </div>
+            <p>El plan Básico permite hasta 2 usuarios.</p>
+            <div class="action-row">
+              <button class="primary-button" type="button">
+                <i data-lucide="user-plus"></i>Agregar usuario
+              </button>
+            </div>
+            <div class="settings-table-wrap">
+              <table class="settings-table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <span class="settings-user-name">Usuario actual</span
+                      ><span class="settings-user-email"
+                        >usuario@ejemplo.com</span
+                      >
+                    </td>
+                    <td>Administrador</td>
+                    <td><span class="settings-status">Activo</span></td>
+                    <td>
+                      <button
+                        class="icon-button"
+                        type="button"
+                        aria-label="Opciones de usuario"
+                      >
+                        <i data-lucide="ellipsis"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>

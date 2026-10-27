@@ -173,6 +173,7 @@ form.addEventListener("submit", async function (event) {
         submitButton.disabled = false;
         submitButtonLabel.textContent = "Registrarse";
     }
+
 });
 
 function showAlert(message) {
