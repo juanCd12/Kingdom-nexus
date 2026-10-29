@@ -12,11 +12,13 @@
     />
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/dashboard-theme.js"></script>
     <link rel="stylesheet" href="../css/variables.css" />
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/plan-dashboard.css" />
     <link rel="stylesheet" href="../css/settings.css" />
+    <link rel="stylesheet" href="../css/dashboard-theme.css" />
   </head>
   <body>
     <div class="dashboard-shell">
@@ -93,6 +95,15 @@
             </p>
           </div>
           <div class="topbar-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Activar modo oscuro"
+              aria-pressed="false"
+            >
+              <span data-theme-icon aria-hidden="true"></span>
+            </button>
             <div class="status-badge">
               <i data-lucide="shield-check"></i> Suscripción activa
             </div>

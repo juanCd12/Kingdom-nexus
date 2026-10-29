@@ -11,10 +11,12 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/dashboard-theme.js"></script>
     <link rel="stylesheet" href="../css/variables.css" />
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/dashboard-theme.css" />
   </head>
   <body>
     <div class="dashboard-shell">
@@ -66,6 +68,15 @@
             <h1>Proveedores</h1>
           </div>
           <div class="topbar-actions">
+            <button
+              class="theme-toggle"
+              type="button"
+              data-theme-toggle
+              aria-label="Activar modo oscuro"
+              aria-pressed="false"
+            >
+              <span data-theme-icon aria-hidden="true"></span>
+            </button>
             <div class="status-badge">
               <i data-lucide="shield-check"></i> Suscripción activa
             </div>
