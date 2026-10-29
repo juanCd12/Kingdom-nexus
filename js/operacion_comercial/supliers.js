@@ -39,13 +39,12 @@
       }
     }
 
-    normalizePayload(payload = {}) {
-      if (!payload || typeof payload !== 'object') {
+    normalizePayload(payload = {}, { partial = false } = {}) {
+      if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
         throw new Error('Los datos del proveedor deben enviarse como un objeto válido.');
       }
 
       const aliasMap = {
-        id: 'id',
         nit: 'nit',
         tax_id: 'nit',
         name: 'name',
@@ -64,9 +63,7 @@
         'city',
         'notes',
         'is_active',
-        'created_by',
-        'created_at',
-        'updated_at'
+        'create_at'
       ];
 
       Object.entries(payload).forEach(([key, rawValue]) => {
@@ -87,18 +84,18 @@
         }
 
         if (fieldName === 'is_active') {
-          normalized[fieldName] = Boolean(value);
+          normalized[fieldName] = value === true || value === 1 || value === 'true';
           return;
         }
 
         normalized[fieldName] = value;
       });
 
-      if (normalized.name === undefined || normalized.name === '') {
+      if (!partial && !normalized.name) {
         throw new Error('El nombre del proveedor es obligatorio.');
       }
 
-      if (normalized.is_active === undefined) {
+      if (!partial && normalized.is_active === undefined) {
         normalized.is_active = true;
       }
 
@@ -107,21 +104,20 @@
 
     async getCurrentUser() {
       if (!this.client || !this.client.auth) {
-        return null;
+        throw new Error('Debes iniciar sesión para consultar proveedores.');
       }
 
-      try {
-        const { data, error } = await this.client.auth.getUser();
+      const { data, error } = await this.client.auth.getUser();
 
-        if (error || !data || !data.user) {
-          return null;
-        }
-
-        return data.user;
-      } catch (error) {
-        console.warn('No se pudo obtener el usuario autenticado:', error);
-        return null;
+      if (error) {
+        throw error;
       }
+
+      if (!data || !data.user) {
+        throw new Error('Debes iniciar sesión para consultar proveedores.');
+      }
+
+      return data.user;
     }
 
     async list(options = {}) {
@@ -133,7 +129,9 @@
         limit = null
       } = options;
 
+      const currentUser = await this.getCurrentUser();
       let query = this.client.from(this.table).select(this.select);
+      query = query.eq('created_by', currentUser.id);
 
       Object.entries(filters).forEach(([key, value]) => {
         if (value === undefined || value === null || value === '') {
@@ -178,10 +176,12 @@
         throw new Error('Debe indicar el identificador del proveedor.');
       }
 
+      const currentUser = await this.getCurrentUser();
       const { data, error } = await this.client
         .from(this.table)
         .select(this.select)
         .eq('id', id)
+        .eq('created_by', currentUser.id)
         .single();
 
       if (error) {
@@ -196,10 +196,12 @@
         throw new Error('Debe indicar el NIT/RUC del proveedor.');
       }
 
+      const currentUser = await this.getCurrentUser();
       const { data, error } = await this.client
         .from(this.table)
         .select(this.select)
         .eq('nit', nit)
+        .eq('created_by', currentUser.id)
         .maybeSingle();
 
       if (error) {
@@ -212,10 +214,7 @@
     async create(payload) {
       const preparedPayload = this.normalizePayload(payload);
       const currentUser = await this.getCurrentUser();
-
-      if (currentUser && !preparedPayload.created_by) {
-        preparedPayload.created_by = currentUser.id;
-      }
+      preparedPayload.created_by = currentUser.id;
 
       const { data, error } = await this.client
         .from(this.table)
@@ -235,20 +234,24 @@
         throw new Error('Debe indicar el identificador del proveedor.');
       }
 
-      const preparedPayload = this.normalizePayload(payload);
+      const currentUser = await this.getCurrentUser();
+      const preparedPayload = this.normalizePayload(payload, { partial: true });
 
-      const { data, error } = await this.client
+      const { count, error } = await this.client
         .from(this.table)
-        .update(preparedPayload)
+        .update(preparedPayload, { count: 'exact' })
         .eq('id', id)
-        .select(this.select)
-        .single();
+        .eq('created_by', currentUser.id);
 
       if (error) {
         throw error;
       }
 
-      return data;
+      if (count === 0) {
+        throw new Error('No se actualizó el proveedor: el registro no existe o no tienes permiso para modificarlo.');
+      }
+
+      return true;
     }
 
     async softDelete(id) {
@@ -264,10 +267,12 @@
         throw new Error('Debe indicar el identificador del proveedor.');
       }
 
+      const currentUser = await this.getCurrentUser();
       const { error } = await this.client
         .from(this.table)
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .eq('created_by', currentUser.id);
 
       if (error) {
         throw error;
@@ -282,7 +287,9 @@
         search = ''
       } = options;
 
+      const currentUser = await this.getCurrentUser();
       let query = this.client.from(this.table).select('*', { count: 'exact', head: true });
+      query = query.eq('created_by', currentUser.id);
 
       Object.entries(filters).forEach(([key, value]) => {
         if (value === undefined || value === null || value === '') {

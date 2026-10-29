@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes | Kingdom Nexus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/plan-dashboard.css" />
+    <link rel="stylesheet" href="../css/costumers.css" />
+  </head>
+  <body class="costumers-page">
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <div>
+          <div class="brand-box">
+            <img src="../images/nexus.png" alt="Kingdom Nexus" />
+          </div>
+          <nav class="nav-menu" aria-label="Menú profesional">
+            <a class="nav-item" href="dashboard.html">
+              <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="productos.html">
+              <i data-lucide="package"></i><span>Productos</span>
+            </a>
+            <button class="nav-item" type="button">
+              <i data-lucide="boxes"></i><span>Inventario</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="arrow-right-left"></i><span>Movimientos</span>
+            </button>
+            <a class="nav-item active" href="clientes.html" aria-current="page">
+              <i data-lucide="users"></i><span>Clientes</span>
+            </a>
+            <a class="nav-item" href="proveedores.html">
+              <i data-lucide="truck"></i><span>Proveedores</span>
+            </a>
+            <button class="nav-item" type="button">
+              <i data-lucide="shopping-cart"></i><span>Compras</span>
+            </button>
+            <button class="nav-item" type="button">
+              <i data-lucide="chart-no-axes-combined"></i><span>Reportes avanzados</span>
+            </button>
+          </nav>
+        </div>
+        <button class="logout-button" type="button">
+          <i data-lucide="log-out"></i>
+          Cerrar sesión
+        </button>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Panel Básico</p>
+            <h1>Clientes</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="status-badge">
+              <i data-lucide="shield-check"></i> Suscripción activa
+            </div>
+            <div class="user-box">
+              <span class="avatar">U</span>
+              <div>
+                <strong id="userName">Usuario</strong>
+                <small id="userEmail">usuario@ejemplo.com</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="supplier-section">
+          <article class="panel supplier-panel">
+            <div class="panel-header">
+              <h3>Gestión de clientes</h3>
+              <span class="panel-badge">Customers</span>
+            </div>
+
+            <div id="customerMessage" class="supplier-message info" role="status" aria-live="polite">
+              Cargando clientes...
+            </div>
+
+            <div class="supplier-layout">
+              <form id="customerForm" class="supplier-form" novalidate>
+                <input type="hidden" id="customerEditId" />
+
+                <div class="supplier-form-grid">
+                  <div class="form-field">
+                    <label for="customerName">Nombre</label>
+                    <input type="text" id="customerName" name="name" placeholder="Ej: María Pérez" required />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerDocumentType">Tipo de documento</label>
+                    <input type="text" id="customerDocumentType" name="document_type" placeholder="Ej: CC, NIT, Pasaporte" />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerDocumentNumber">Número de documento</label>
+                    <input type="text" id="customerDocumentNumber" name="document_number" placeholder="Ej: 1020304050" />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerEmail">Correo</label>
+                    <input type="email" id="customerEmail" name="email" placeholder="Ej: maria@correo.com" />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerPhone">Teléfono</label>
+                    <input type="tel" id="customerPhone" name="phone" placeholder="Ej: 3001234567" />
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerCity">Ciudad</label>
+                    <input type="text" id="customerCity" name="city" placeholder="Ej: Bogotá" />
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="customerAddress">Dirección</label>
+                    <input type="text" id="customerAddress" name="address" placeholder="Ej: Calle 10 # 20-30" />
+                  </div>
+
+                  <div class="form-field full-width">
+                    <label for="customerNotes">Notas</label>
+                    <textarea id="customerNotes" name="notes" rows="3" placeholder="Comentarios internos del cliente"></textarea>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="customerStatus">Estado</label>
+                    <select id="customerStatus" name="is_active">
+                      <option value="true">Activo</option>
+                      <option value="false">Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="supplier-actions">
+                  <button type="submit" class="primary-button" id="submitCustomerButton">
+                    Guardar cliente
+                  </button>
+                  <button type="button" class="secondary-button" id="cancelCustomerEdit" hidden>
+                    Cancelar edición
+                  </button>
+                </div>
+              </form>
+
+              <div class="supplier-table-wrapper">
+                <table class="supplier-table">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Tipo doc.</th>
+                      <th>Número</th>
+                      <th>Email</th>
+                      <th>Teléfono</th>
+                      <th>Ciudad</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="customerTableBody">
+                    <tr>
+                      <td colspan="8" class="empty-row">Sin clientes cargados.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/operacion_comercial/customers.js"></script>
+    <script src="../js/planBasico/customers.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>
