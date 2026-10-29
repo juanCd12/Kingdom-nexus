@@ -113,6 +113,82 @@
     color: #f1f5f9;
 }
 
+:root[data-theme="dark"] .module-workspace,
+:root[data-theme="dark"] .module-panel,
+:root[data-theme="dark"] .settings-panel,
+:root[data-theme="dark"] .settings-plan-card,
+:root[data-theme="dark"] .supplier-panel,
+:root[data-theme="dark"] .settings-table-wrap,
+:root[data-theme="dark"] .table-wrap,
+:root[data-theme="dark"] .modal-content,
+:root[data-theme="dark"] .product-modal,
+:root[data-theme="dark"] .module-modal {
+    background: #151e2e;
+    border-color: #334155;
+    color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .settings-table th,
+:root[data-theme="dark"] .data-table th,
+:root[data-theme="dark"] .supplier-table th {
+    background: #101827;
+    color: #e2e8f0;
+}
+
+:root[data-theme="dark"] .settings-table td,
+:root[data-theme="dark"] .data-table td,
+:root[data-theme="dark"] .supplier-table td {
+    color: #cbd5e1;
+}
+
+:root[data-theme="dark"] .settings-table th,
+:root[data-theme="dark"] .settings-table td,
+:root[data-theme="dark"] .data-table th,
+:root[data-theme="dark"] .data-table td {
+    border-color: #334155;
+}
+
+:root[data-theme="dark"] .settings-plan-card h3,
+:root[data-theme="dark"] .settings-plan-price,
+:root[data-theme="dark"] .settings-toggle-copy strong,
+:root[data-theme="dark"] .module-panel h3,
+:root[data-theme="dark"] .panel h3 {
+    color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .settings-workspace p,
+:root[data-theme="dark"] .settings-toggle-copy small,
+:root[data-theme="dark"] .settings-plan-features,
+:root[data-theme="dark"] .settings-field label,
+:root[data-theme="dark"] .settings-help {
+    color: #cbd5e1;
+}
+
+:root[data-theme="dark"] .settings-field input,
+:root[data-theme="dark"] .settings-field select,
+:root[data-theme="dark"] .module-workspace input,
+:root[data-theme="dark"] .module-workspace select,
+:root[data-theme="dark"] .module-workspace textarea,
+:root[data-theme="dark"] .modal-content input,
+:root[data-theme="dark"] .modal-content select,
+:root[data-theme="dark"] .modal-content textarea {
+    background: #0f172a;
+    border-color: #475569;
+    color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .settings-field input::placeholder,
+:root[data-theme="dark"] .module-workspace input::placeholder,
+:root[data-theme="dark"] .module-workspace textarea::placeholder {
+    color: #94a3b8;
+}
+
+:root[data-theme="dark"] .status-badge {
+    background: #12372d;
+    border-color: rgba(52, 211, 153, 0.2);
+    color: #6ee7b7;
+}
+
 .theme-toggle {
     display: inline-grid;
     align-items: center;

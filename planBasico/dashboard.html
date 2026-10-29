@@ -12,15 +12,7 @@
     />
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-      try {
-        if (localStorage.getItem("kingdom-nexus-theme") === "dark") {
-          document.documentElement.dataset.theme = "dark";
-        }
-      } catch (error) {
-        console.warn("No se pudo recuperar el tema guardado.", error);
-      }
-    </script>
+    <script src="../js/dashboard-theme.js"></script>
     <link rel="stylesheet" href="../../css/variables.css" />
     <link rel="stylesheet" href="../../css/base.css" />
     <link rel="stylesheet" href="../../css/dashboard.css" />
@@ -265,7 +257,7 @@
     <script>
       lucide.createIcons();
     </script>
-    <script src="../js/dashboard-theme.js"></script>
+
     <script src="../js/dashboard-preferences.js"></script>
     <script src="../js/dashboard.js"></script>
     <script src="../js/logout.js"></script>
